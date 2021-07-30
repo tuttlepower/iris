@@ -8,8 +8,9 @@ FlaskJSON(app)
 
 @app.route('/')
 def data():
-    data = iris.populate()
-    return json_response(data=data)
+    return "Hello"
+#     data = iris.populate()
+#     return json_response(data=data)
 
 @app.route('/get_time')
 def get_time():
