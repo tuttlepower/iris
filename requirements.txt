@@ -2,3 +2,4 @@ Flask-JSON==0.3.4
 gunicorn
 flask==1.1.2
 requests==2.25.1
+flask_cors
