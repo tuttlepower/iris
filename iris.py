@@ -20,35 +20,6 @@ url_list = {
 }
 
 
-def getPaper(item):
-    title = ""
-    link = ""
-    description = ""
-    date = ""
-    for article in item:
-        if(article.tag == 'title'):
-            title = article.text
-
-        if (article.tag == 'link'):
-            link = article.text
-
-        if (article.tag == 'pubDate'):
-            date = article.text
-            date = datetime.now().date()
-            # try:
-            #     date = datetime.strptime(date, '%a, %d %b %Y %H:%M:%S %z').date()
-            # except:
-            #     date = datetime.now().date()
-
-        if (article.tag == 'description'):
-            description = article.text
-
-    if(title != "" and link != "" and description != "" and date != ""):
-        return Paper.Paper(title, description, link, date)
-    else:
-        return None
-
-
 def getArticles(url):
     r = requests.get(url)
     root = ET.fromstring(r.text)
@@ -74,48 +45,15 @@ def getArticles(url):
                         date = datetime.strptime(
                             date, '%a, %d %b %Y %H:%M:%S %z').date()
                         if date < datetime.now().date() - timedelta(days=7):
-                            print("Old")
-                            print(title)
-                            old=True
+                            old = True
                             break
                     except:
                         break
-                        print(date)
 
             if(title != '' and link != '' and description != ''):
                 p = Paper(title, description, link, date)
                 articles.append(p)
         return articles
-
-    # for item in root:
-    #     title = ''
-    #     link = ''
-    #     description = ''
-    #     date = ''
-    #     for article in item:
-    #         if(article.tag == 'title'):
-    #             title = article.text
-    #         if (article.tag == 'link'):
-    #             link = article.text
-
-    #         if (article.tag == 'description'):
-    #             description = article.text
-    #         if (article.tag == 'pubDate'):
-    #             date = article.text
-    #             try:
-    #                 date = datetime.strptime(date, '%a, %d %b %Y %H:%M:%S %z').date()
-    #                 if date < datetime.now().date() - timedelta(days=7):
-    #                     print("Old")
-    #                     print(title)
-    #                     break
-    #             except:
-    #                 pass
-    #                 print(date)
-
-    #     if(title != '' and link != '' and description != ''):
-    #         p = Paper(title, description, link, date)
-    #         articles.append(p)
-    # return articles
 
 
 def getPapersFromAllUrls():
@@ -151,13 +89,3 @@ def populate():
     # articles = getPapersFromTestUrls()
     # return json.dumps(articles, default=lambda o: o.__dict__, sort_keys=True, separators=(',', ': '), ensure_ascii=False)
     return [article.__dict__ for article in articles]
-
-# articles = populate()
-
-
-# print(articles)
-# for article in articles:
-#     print(article.title)
-#     print(article.description)
-#     print(article.link)
-#     print("")

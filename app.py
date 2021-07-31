@@ -6,13 +6,16 @@ import iris
 app = Flask(__name__)
 FlaskJSON(app)
 
+
 @app.route('/')
 def data():
     return dict(data=iris.populate())
 
+
 @app.route('/get_time')
 def get_time():
     return json_response(time=datetime.utcnow())
+
 
 @app.route('/get_value')
 @as_json
