@@ -4,10 +4,3 @@ class Paper:
         self.description = description
         self.link = link
         self.date = date
-
-    # def __dict__(self):
-    #     return {
-    #         'Title': self.title,
-    #         'Description': self.description,
-    #         'Link': self.link,
-    #         'Date': self.date}
