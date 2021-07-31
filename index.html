@@ -204,6 +204,37 @@
         // Setting innerHTML as tab variable
         document.getElementById("news").innerHTML = tab;
     }
+
+    // Calling that async function
+    getapi(api_url);
+
+    // Function to hide the loader
+    function hideloader() {
+        document.getElementById('loading').style.display = 'none';
+    }
+    // Function to define innerHTML for HTML table
+    function show(data) {
+        let tab =
+            `<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>`;
+
+        // Loop to access all rows
+        for (let r of data) {
+            tab += `<tr>
+<td><a href =${r.html_url}>${r.name}</a></td>
+<td>${r.description}</td>
+        
+</tr>`;
+        }
+        // Setting innerHTML as tab variable
+        document.getElementById("employees").innerHTML = tab;
+    }
+
+    fetch('https://iris-develop.herokuapp.com/')
+        .then(response => response.json())
+        .then(data => console.log(data));
 </script>
 
 </html>
