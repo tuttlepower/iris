@@ -1,6 +1,7 @@
 class Paper:
-    def __init__(self, title, description, link, date):
+    def __init__(self, title, description, link, date, logo='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'):
         self.title = title
         self.description = description
         self.link = link
         self.date = date
+        self.logo = logo
