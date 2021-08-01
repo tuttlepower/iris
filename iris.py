@@ -51,7 +51,7 @@ def getArticles(url):
                         date = datetime.strptime(
                             date, '%a, %d %b %Y %H:%M:%S %z').date()
                     except:
-                        pass
+                        date = datetime.now().date()
 
             if(title != '' and link != '' and description != '' and date > datetime.now().date() - timedelta(days=7)):
                 p = Paper(title, description, link, date, logo=icon_list[url])
