@@ -7,18 +7,16 @@ from Paper import Paper
 
 url_list = {
     'FiveThirtyEight': 'https://feeds.megaphone.fm/ESP8794877317',
-    'NASA': 'https://www.nasa.gov/rss/dyn/breaking_news.rss',
+    # TODO: Fix NASA date Parse/ Abstract out Date Parsing
+    # 'NASA': 'https://www.nasa.gov/rss/dyn/breaking_news.rss',
     'FRED': 'https://news.research.stlouisfed.org/feed/',
     'MIT News': 'https://news.mit.edu/rss/feed',
-    'MIT Econ': 'https://news.mit.edu/rss/topic/economics',
     'MIT Data': 'https://news.mit.edu/rss/topic/data-management-and-statistics',
-    # 'MIT Robotics': 'https://news.mit.edu/rss/topic/robotics',
     'EconTalk': 'https://feeds.simplecast.com/wgl4xEgL',
-    'NPR': 'https://feeds.npr.org/1001/rss.xml',
-    # 'Stanford News': 'https://www.sup.org/rss/?feed=economics'
+    'NPR': 'https://feeds.npr.org/1001/rss.xml'
 }
 
-
+# TODO: Fix Looping to improve speed, cut dataset size, no need to go through all of Econtalk
 def getArticles(url):
     r = requests.get(url)
     root = ET.fromstring(r.text)
@@ -43,13 +41,10 @@ def getArticles(url):
                     try:
                         date = datetime.strptime(
                             date, '%a, %d %b %Y %H:%M:%S %z').date()
-                        if date < datetime.now().date() - timedelta(days=7):
-                            old = True
-                            break
                     except:
-                        break
+                        pass
 
-            if(title != '' and link != '' and description != ''):
+            if(title != '' and link != '' and description != '' and date > datetime.now().date() - timedelta(days=7)):
                 p = Paper(title, description, link, date)
                 articles.append(p)
         return articles
@@ -86,5 +81,5 @@ def getPapersFromTestUrls():
 def populate():
     articles = getPapersFromAllUrls()
     # articles = getPapersFromTestUrls()
-    # articles = sorted(articles, key=lambda x: x.date, reverse=True)
+    articles = sorted(articles, key=lambda x: x.date, reverse=True)
     return [article.__dict__ for article in articles]
