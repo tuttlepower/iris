@@ -13,7 +13,8 @@ url_list = {
     'MIT News': 'https://news.mit.edu/rss/feed',
     'MIT Data': 'https://news.mit.edu/rss/topic/data-management-and-statistics',
     'EconTalk': 'https://feeds.simplecast.com/wgl4xEgL',
-    'NPR': 'https://feeds.npr.org/1001/rss.xml'
+    'NPR': 'https://feeds.npr.org/1001/rss.xml',
+    'NBER':'https://back.nber.org/rss/new.xml'
 }
 icon_list = {
     url_list['FiveThirtyEight']: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/FiveThirtyEight_Logo.svg/1280px-FiveThirtyEight_Logo.svg.png',
@@ -21,7 +22,8 @@ icon_list = {
     url_list['MIT News']: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/1280px-MIT_logo.svg.png',
     url_list['MIT Data']: 'https://dsl.mit.edu/sites/default/files/Final%20Zoomed.png',
     url_list['EconTalk']: 'http://files.libertyfund.org/econtalk/EconTalkCDcover1400y2007.jpg',
-    url_list['NPR']: 'https://media.npr.org/chrome_svg/npr-logo.svg'
+    url_list['NPR']: 'https://media.npr.org/chrome_svg/npr-logo.svg',
+    url_list['NBER']:'https://cdn.corporatefinanceinstitute.com/assets/national-bureau-of-economic-research-nber1.jpg'
 }
 # TODO: Fix Looping to improve speed, cut dataset size, no need to go through all of Econtalk
 def getArticles(url):
