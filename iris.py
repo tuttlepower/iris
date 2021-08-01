@@ -17,11 +17,11 @@ url_list = {
 }
 icon_list = {
     url_list['FiveThirtyEight']: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/FiveThirtyEight_Logo.svg/1280px-FiveThirtyEight_Logo.svg.png',
-    url_list['FRED']:'https://research.stlouisfed.org/images/masthead-88h-2x.png',
+    url_list['FRED']:'https://research.stlouisfed.org/images/frb-logo-bw.png',
     url_list['MIT News']: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/1280px-MIT_logo.svg.png',
     url_list['MIT Data']: 'https://dsl.mit.edu/sites/default/files/Final%20Zoomed.png',
     url_list['EconTalk']: 'http://files.libertyfund.org/econtalk/EconTalkCDcover1400y2007.jpg',
-    url_list['NPR']: 'https://www.npr.org/assets/img/npr-news2.png'
+    url_list['NPR']: 'https://media.npr.org/chrome_svg/npr-logo.svg'
 }
 # TODO: Fix Looping to improve speed, cut dataset size, no need to go through all of Econtalk
 def getArticles(url):
