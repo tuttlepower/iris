@@ -86,5 +86,5 @@ def getPapersFromTestUrls():
 def populate():
     articles = getPapersFromAllUrls()
     # articles = getPapersFromTestUrls()
-    # return json.dumps(articles, default=lambda o: o.__dict__, sort_keys=True, separators=(',', ': '), ensure_ascii=False)
+    # articles = sorted(articles, key=lambda x: x.date, reverse=True)
     return [article.__dict__ for article in articles]

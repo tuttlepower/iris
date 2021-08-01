@@ -119,24 +119,6 @@
                     <input class="form-control me-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
-
-
-
-
-                <!-- <form action="https://www.google.com/search" class="d-flex searchform" method="get" name="searchform"
-                    target="_blank">
-                    <input class="form-control " name="sitesearch" type="hidden" placeholder="Search">
-                    <input autocomplete="on" class="form-control search form-control" name="q"
-                        placeholder="Search Google" type="text">
-                    <button class="btn btn-outline-secondary" type="submit">Search</button>
-                </form> -->
-
-        </div>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="row" id='news'></div>
-            </div>
         </div>
     </div>
 
@@ -144,7 +126,7 @@
     <div class="container">
         <br>
         <div class="row">
-            <h1>Github Projects</h1>
+            <h1>News</h1>
             <!-- Here a loader is created which 
          loads till response comes -->
             <div class="d-flex justify-content-center">
@@ -152,8 +134,11 @@
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
-            <!-- table for showing data -->
-            <table class="table table table-hover" id="employees"></table>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="row" id='news'></div>
+                </div>
+            </div>
         </div>
     </div>
     </div>
@@ -202,7 +187,7 @@
     function show(data) {
         let tab = '';
         // Loop to access all rows
-        for (let r of data) {
+        for (let r of data.data) {
             tab += `<div class="col-sm-4">
                 <div class="card border-secondary mb-3 dark-mode-card">
                     <div class="card-header"><a href =${r.link}>${r.title}</a></td></div>
@@ -213,6 +198,7 @@
                         </div>
                     </div>`;
         }
+        // Setting innerHTML as tab variable
         // Setting innerHTML as tab variable
         document.getElementById("news").innerHTML = tab;
     }
@@ -254,24 +240,24 @@
     function hideloader() {
         document.getElementById('loading').style.display = 'none';
     }
-    // Function to define innerHTML for HTML table
-    function show(data) {
-        let tab =
-            `<tr>
-    <th>Name</th>
-    <th>Description</th>
-    </tr>`;
+    // // Function to define innerHTML for HTML table
+    // function show(data) {
+    //     let tab =
+    //         `<tr>
+    // <th>Name</th>
+    // <th>Description</th>
+    // </tr>`;
 
-        // Loop to access all rows
-        for (let r of data.data) {
-            tab += `<tr>
-                <td><a href =${r.link}>${r.title}</a></td>
-                <td>${r.description}</td>         
-                </tr>`;
-        }
-        // Setting innerHTML as tab variable
-        document.getElementById("employees").innerHTML = tab;
-    }
+    //     // Loop to access all rows
+    //     for (let r of data.data) {
+    //         tab += `<tr>
+    //             <td><a href =${r.link}>${r.title}</a></td>
+    //             <td>${r.description}</td>         
+    //             </tr>`;
+    //     }
+    //     // Setting innerHTML as tab variable
+    //     document.getElementById("employees").innerHTML = tab;
+    // }
 
     // fetch('https://iris-develop.herokuapp.com/')
     //     .then(response => response.json())
