@@ -31,7 +31,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Dismal</a>
+                <a class="navbar-brand" href="#">Iris</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
                     aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -142,8 +142,8 @@
 
 
     <div class="container">
-    <br>
-    <div class="row">
+        <br>
+        <div class="row">
             <h1>Github Projects</h1>
             <!-- Here a loader is created which 
          loads till response comes -->
@@ -156,10 +156,10 @@
             <table class="table table-dark table-hover" id="employees"></table>
         </div>
     </div>
-</div>
+    </div>
 </body>
 
-<!-- <script>
+<script>
     function myFunction() {
         var element = document.body;
         element.classList.toggle("dark-mode");
@@ -197,9 +197,6 @@
         // element.classList.toggle("dark-mode");
     }
 
-    console.log(test);
-
-    show(test);
 
 
     function show(data) {
@@ -222,10 +219,8 @@
 
     fetch('https://iris-develop.herokuapp.com/')
         .then(response => response.json())
-        .then(data => console.log(data));
-</script> -->
+        .then(data => show(data));
 
-<script>
     window.dataLayer = window.dataLayer || [];
 
     function gtag() {
@@ -234,54 +229,53 @@
     gtag('js', new Date());
 
     gtag('config', 'G-8W8L407W93');
-     // api url
-     const api_url =
-            "https://iris-develop.herokuapp.com/";
+    // api url
+    const api_url =
+        "https://iris-develop.herokuapp.com/";
 
     // Defining async function
     async function getapi(url) {
 
-            // Storing response
-            const response = await fetch(url);
+        // Storing response
+        const response = await fetch(url);
 
-            // Storing data in form of JSON
-            var data = await response.json();
-            console.log(data);
-            if (response) {
-                    hideloader();
-            }
-            show(data);
+        // Storing data in form of JSON
+        var data = await response.json();
+        console.log(data);
+        if (response) {
+            hideloader();
+        }
+        show(data);
     }
     // Calling that async function
     getapi(api_url);
 
     // Function to hide the loader
     function hideloader() {
-            document.getElementById('loading').style.display = 'none';
+        document.getElementById('loading').style.display = 'none';
     }
     // Function to define innerHTML for HTML table
     function show(data) {
-            let tab =
-                    `<tr>
+        let tab =
+            `<tr>
     <th>Name</th>
     <th>Description</th>
     </tr>`;
 
-            // Loop to access all rows
-            for (let r of data) {
-                    tab += `<tr>
-<td><a href =${r.html_url}>${r.name}</a></td>
-<td>${r.description}</td>
-            
-</tr>`;
-            }
-            // Setting innerHTML as tab variable
-            document.getElementById("employees").innerHTML = tab;
+        // Loop to access all rows
+        for (let r of data.data) {
+            tab += `<tr>
+                <td><a href =${r.link}>${r.title}</a></td>
+                <td>${r.description}</td>         
+                </tr>`;
+        }
+        // Setting innerHTML as tab variable
+        document.getElementById("employees").innerHTML = tab;
     }
 
-    fetch('https://iris-develop.herokuapp.com/')
-.then(response => response.json())
-.then(data => console.log(data));
+    // fetch('https://iris-develop.herokuapp.com/')
+    //     .then(response => response.json())
+    //     .then(data => console.log(data));
 
 </script>
 
