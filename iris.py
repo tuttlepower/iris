@@ -14,7 +14,7 @@ url_list = {
     'MIT Data': 'https://news.mit.edu/rss/topic/data-management-and-statistics',
     'EconTalk': 'https://feeds.simplecast.com/wgl4xEgL',
     'NPR': 'https://feeds.npr.org/1001/rss.xml',
-    'NBER':'https://back.nber.org/rss/new.xml',
+    # 'NBER':'https://back.nber.org/rss/new.xml',
     'BEA':'https://apps.bea.gov/rss/rss.xml',
     'Arxiv_econ':'http://export.arxiv.org/rss/econ',
     'JMLR':"https://jmlr.org/jmlr.xml",
@@ -26,7 +26,7 @@ icon_list = {
     url_list['MIT Data']: 'https://dsl.mit.edu/sites/default/files/Final%20Zoomed.png',
     url_list['EconTalk']: 'http://files.libertyfund.org/econtalk/EconTalkCDcover1400y2007.jpg',
     url_list['NPR']: 'https://media.npr.org/chrome_svg/npr-logo.svg',
-    url_list['NBER']:'https://cdn.corporatefinanceinstitute.com/assets/national-bureau-of-economic-research-nber1.jpg',
+    # url_list['NBER']:'https://cdn.corporatefinanceinstitute.com/assets/national-bureau-of-economic-research-nber1.jpg',
     url_list['BEA']:'https://www.commerce.gov/sites/default/files/styles/full_width_image_700x400max/public/media/images/branding/bea-logo-dark-background-citing.png?itok=C_RcEoKT',
     url_list['Arxiv_econ']:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ArXiv_web.svg/1200px-ArXiv_web.svg.png',
     url_list['JMLR']:'https://jmlr.org/img/jmlr.jpg',
@@ -99,3 +99,7 @@ def populate():
     # articles = getPapersFromTestUrls()
     articles = sorted(articles, key=lambda x: x.date, reverse=True)
     return [article.__dict__ for article in articles]
+
+# def prep(db):
+#     list = db.query().all()
+#     print(list)
