@@ -1,12 +1,13 @@
-from datetime import datetime
-from flask import Flask, request, jsonify
-from flask_json import FlaskJSON, JsonError, json_response, as_json
-import iris
-from flask_cors import CORS, cross_origin
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
-import json
 from dataclasses import dataclass
+from datetime import datetime
+
+from flask import Flask
+from flask_cors import CORS, cross_origin
+from flask_json import FlaskJSON, as_json, json_response
+from flask_sqlalchemy import SQLAlchemy
+
+import iris
+
 # from Paper import Paper
 
 app = Flask(__name__)
@@ -17,6 +18,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///article.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+
 @dataclass
 class Paper(db.Model):
     id: int
@@ -26,7 +28,7 @@ class Paper(db.Model):
     date: str
     title: str
     logo: str
-    
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(500), nullable=False)
@@ -41,10 +43,12 @@ class Paper(db.Model):
         self.date = date
         self.logo = logo
 
+
 @app.route('/')
 @cross_origin()
 def data():
-    return json_response(data = Paper.query.all())
+    return json_response(data=Paper.query.all())
+
 
 @app.route('/get_time')
 def get_time():
@@ -56,15 +60,24 @@ def get_time():
 def get_value():
     return dict(value=12)
 
+
 @app.route('/initialize', methods=['GET'])
 def initialize():
     db.create_all()
     articles = iris.populate()
     for article in articles:
-        db.session.add(Paper(article['title'], article['description'], article['link'], article['date'], article['logo']))
+        db.session.add(Paper(article['title'], article['description'],
+                       article['link'], article['date'], article['logo']))
         db.session.commit()
     db.session.flush()
     return json_response(status=200, message="Database initialized")
+
+
+@app.route('/reset', methods=['GET'])
+def reset():
+    db.drop_all()
+    initialize()
+    return json_response(status=200, message="Database reset")
 
 
 if __name__ == '__main__':
