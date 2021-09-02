@@ -8,7 +8,6 @@
         href="https://raw.githubusercontent.com/tuttlepower/tuttlepower/master/Resources/Images/facelighting.png"
         type="Head" sizes="16x16">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -17,9 +16,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="undefined"
-        crossorigin="anonymous"></script><!-- minified Bootstrap Lux -->
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
-
 
     <!-- my Css -->
     <link rel="stylesheet" href="static/css/template.css">
@@ -27,9 +25,9 @@
     <title>Iris</title>
 </head>
 
-<body onload="startTime()">
+<body onload="startTime()" class="table-dark">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Iris</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
@@ -92,11 +90,8 @@
                             <a class="nav-link" href="space"><i class="fas fa-rocket"></i> Space</a>
                         </li>
                     </ul>
-
-                    <div class="d-flex">
-                        <div class="nav-link navbar-brand" onclick="myFunction()"><i class="fas fa-adjust"> </i> </div>
-                    </div>
                 </div>
+            </div>
             </div>
         </nav>
     </header>
@@ -107,19 +102,11 @@
                 </h4>
                 <div id='date'></div>
                 <div id="txt"></div>
-                <br>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
         </div>
     </div>
     <div class="container">
         <br>
         <div class="row">
-            <h1>News</h1>
-            <!-- Here a loader is created which 
-         loads till response comes -->
             <div class="d-flex justify-content-center">
                 <div class="spinner-border" role="status" id="loading">
                     <span class="sr-only">Loading...</span>
@@ -136,56 +123,18 @@
 </body>
 
 <script>
-    function myFunction() {
-        var element = document.body;
-        element.classList.toggle("dark-mode");
-    }
-
-    var d = new Date();
-    document.getElementById("date").innerHTML = "The time is currently " + d.toLocaleTimeString();
-
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        var s = today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('txt').innerHTML = "The time is currently " +
-            h + ":" + m + ":" + s;
-        var t = setTimeout(startTime, 1000);
-    }
-
-    function checkTime(i) {
-        if (i < 10) {
-            i = "0" + i
-        }; // add zero in front of numbers < 10
-        return i;
-    }
-    var curHr = d.getHours()
-    if (curHr < 12) {
-        document.getElementById("greeting").innerHTML = 'Good Morning';
-    } else if (curHr < 18) {
-        document.getElementById("greeting").innerHTML = 'Good Afternoon';
-    } else {
-        document.getElementById("greeting").innerHTML = 'Good Evening';
-        // var element = document.body;
-        // element.classList.toggle("dark-mode");
-    }
-
-
-
     function show(data) {
         let tab = '';
         // Loop to access all rows
         for (let r of data.data) {
             tab += `<div class="col-sm-4">
-                <div class="card border-secondary mb-3 dark-mode-card">
-                    <div class="card-header"><a href =${r.link}>${r.title}</a></td></div>
+                <div class="card bg-primary mb-3">
+                    <h5 class="card-header">${r.title}</td></h5>
                     <div class="card-body">
-                        <h4 class="card-title">${r.date}</h4>
+                        <p class="card-title text-white">${r.date}</p>
                         <p>${r.description}</p>
                         <img src="${r.logo}" alt="logo" style="width:25%;">
+                        <a href =${r.link}>Link</a>
                         </div>
                         </div>
                     </div>`;
