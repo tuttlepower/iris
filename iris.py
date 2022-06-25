@@ -7,6 +7,7 @@ import requests
 from Paper import Paper
 
 url_list = {
+    'Axios':'https://www.axios.com/feeds/feed.rss',
     'FiveThirtyEight': 'https://feeds.megaphone.fm/ESP8794877317',
     # TODO: Fix NASA date Parse/ Abstract out Date Parsing
     # 'NASA': 'https://www.nasa.gov/rss/dyn/breaking_news.rss',
@@ -21,6 +22,7 @@ url_list = {
     'JMLR': "https://jmlr.org/jmlr.xml",
 }
 icon_list = {
+    url_list['Axios']:'null',
     url_list['FiveThirtyEight']: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/FiveThirtyEight_Logo.svg/1280px-FiveThirtyEight_Logo.svg.png',
     url_list['FRED']: 'https://research.stlouisfed.org/images/frb-logo-bw.png',
     url_list['MIT News']: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/1280px-MIT_logo.svg.png',
@@ -99,10 +101,5 @@ def getPapersFromTestUrls():
 
 def populate():
     articles = getPapersFromAllUrls()
-    # articles = getPapersFromTestUrls()
     articles = sorted(articles, key=lambda x: x.date, reverse=True)
     return [article.__dict__ for article in articles]
-
-# def prep(db):
-#     list = db.query().all()
-#     print(list)
