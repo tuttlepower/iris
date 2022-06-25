@@ -1,0 +1,5 @@
+
+__pycache__/
+*.pyc
+__pycache__/iris.cpython-310.pyc
+/iris/__pycache__
