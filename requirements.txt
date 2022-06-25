@@ -1,8 +1,8 @@
 Flask-JSON==0.3.4
 gunicorn
-flask==1.1.2
-requests==2.25.1
-flask_cors
+Flask==2.0.2
+requests==2.27.1
+Flask-Cors==3.0.10
 dataclasses
-flask_sqlalchemy
-sqlalchemy
+Flask-SQLAlchemy==2.5.1
+SQLAlchemy==1.4.27
