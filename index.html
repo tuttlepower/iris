@@ -1,181 +1,305 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- Meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Chrome, Firefox OS and Opera mobile address bar theming -->
+    <meta name="theme-color" content="#000000">
+    <!-- Windows Phone mobile address bar theming -->
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <!-- iOS Safari mobile address bar theming -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+
+    <!-- SEO -->
+    <meta name="description" content="SEO fun shenanigans
+    .">
+    <meta name="author" content="Halfmoon">
+    <meta name="keywords" content="Halfmoon, Iris, Flask, News, Nasa">
+
+    <!-- Open graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="/iris">
+    <meta property="og:title" content="Iris, the link aggregator and newsfeed">
+    <meta property="og:description" content="Iris is my news aggregator, built with Flask and Halfmoon">
+    <meta property="og:image" content="https://apod.nasa.gov/apod/image/2206/NGC6744_chakrabarti1024R.jpg">
+
+    <meta name="twitter:site" content="@tuttlepower">
+
+    <!-- Fav and Title -->
     <link rel="icon"
         href="https://raw.githubusercontent.com/tuttlepower/tuttlepower/master/Resources/Images/facelighting.png"
         type="Head" sizes="16x16">
+    <title>Iris - Halfmoon</title>
 
+    <!-- Halfmoon -->
+    <link href="static/css/halfmoon.css" rel="stylesheet">
+    <!-- Font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="undefined"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-
-    <!-- my Css -->
-    <link rel="stylesheet" href="static/css/template.css">
-
-    <title>Iris</title>
+    <!-- Roboto font (Used when Apple system fonts are not available) -->
+    <link href="static/css/styles.css" rel="stylesheet">
+    <!-- Documentation styles -->
+    <link href="test_files/documentation-styles-4.css" rel="stylesheet">
 </head>
 
-<body onload="startTime()" class="table-dark">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Iris</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
-                    aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+<body class="dark-mode with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true"
+    data-sidebar-shortcut-enabled="true">
+
+    <!-- Page wrapper start -->
+    <div id="page-wrapper" class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom with-transitions"
+        data-sidebar-type="overlayed-sm-and-down">
+
+        <!-- Sticky alerts -->
+        <div class="sticky-alerts"></div>
+
+        <!-- Navbar start -->
+        <nav class="navbar">
+            <div class="navbar-content">
+                <button id="toggle-sidebar-btn" class="btn btn-action" type="button" onclick="halfmoon.toggleSidebar()">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarColor03">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/">Home
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i
-                                    class="far fa-chart-bar"></i> Economics
-                            </a>
-                            <div class="dropdown-menu nav-item">
-                                <a class="dropdown-item" href="https://www.igmchicago.org/" target="_blank">
-                                    <i class="fas fa-chart-line">IGMChicago
-
-                                    </i>
-                                </a>
-                                <a class="dropdown-item" href="https://www.nber.org/" target="_blank">
-                                    <i class="fas fa-chart-area"> NBER</i>
-                                </a>
-                                <a class="dropdown-item" href="https://arxiv.org/list/econ/new" target="_blank">
-                                    <i class="fas fa-project-diagram"> Arxiv</i>
-                                </a>
-                                <a class="dropdown-item" href="https://fred.stlouisfed.org/" target="_blank">
-                                    <i class="fas fa-chart-pie"> FRED</i>
-                                </a>
-
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"><i
-                                    class="fas fa-laptop-code"></i> Links
-                            </a>
-                            <div class="dropdown-menu nav-item">
-                                <a class="dropdown-item" href="https://www.twitter.com" target="_blank">
-                                    <div class="fa fa-twitter"> Twitter</div>
-                                </a>
-                                <a class="dropdown-item" href="https://www.linkedin.com" target="_blank">
-                                    <div class="fa fa-linkedin"> LinkedIn</div>
-                                </a>
-                                <a class="dropdown-item" href="https://www.youtube.com" target="_blank">
-                                    <div class="fa fa-youtube"> Youtube</div>
-                                </a>
-                                <a class="dropdown-item" href="https://www.instagram.com" target="_blank">
-                                    <div class="fa fa-instagram"> Instagram</div>
-                                </a>
-                                <a class="dropdown-item" href="https://www.reddit.com" target="_blank">
-                                    <div class="fa fa-reddit"> Reddit</div>
-                                </a>
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
             </div>
+            <a href="#" class="navbar-brand ml-10 ml-sm-20">
+                <img src="https://raw.githubusercontent.com/tuttlepower/tuttlepower/master/Resources/Images/facelighting.png"
+                    alt="fake-logo">
+                <span class="d-none d-sm-flex">Iris</span>
+            </a>
+            <div class="navbar-content ml-auto">
+                <button class="btn btn-action mr-5" type="button" onclick="halfmoon.toggleDarkMode()">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                    <span class="sr-only">Toggle dark mode</span>
+                </button>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <div class="alert">
-            <h3 class="alert-heading">
-                <div id='greeting' />
-                </h4>
-                <div id='date'></div>
-                <div id="txt"></div>
-        </div>
-    </div>
-    <div class="container">
-        <br>
-        <div class="row">
-            <div class="d-flex justify-content-center">
-                <div class="spinner-border" role="status" id="loading">
-                    <span class="sr-only">Loading...</span>
-                </div>
+        <!-- Navbar end -->
+
+        <!-- Sidebar overlay -->
+        <div class="sidebar-overlay" onclick="halfmoon.toggleSidebar()"></div>
+
+        <!-- Sidebar start -->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <div class="sidebar-divider"></div>
+                <a href="https://leetcode.com/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-terminal" aria-hidden="true"></i>
+                    </span>
+                    LeetCode
+                </a>
+                <a href="https://news.ycombinator.com/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fab fa-hacker-news" aria-hidden="true"></i>
+                    </span>
+                    HackerNews
+                </a>
+                <a href="https://libbyapp.com/shelf" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    LibbyApp
+                </a>
+                <a href="https://github.com/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </span>
+                    Github
+                </a>
+                <a href="https://lichess.org/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-chess-knight" aria-hidden="true"></i>
+                    </span>
+                    Lichess
+                </a>
+                <a href="https://photos.google.com/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-images" aria-hidden="true"></i>
+                    </span>
+                    Photos
+                </a>
+                <a href="https://mail.google.com/mail/u/0/#inbox" class="sidebar-link sidebar-link-with-icon"
+                    target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                    </span>
+                    Gmail
+                </a>
+                <a href="https://docs.google.com/document/u/0/" class="sidebar-link sidebar-link-with-icon"
+                    target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                    </span>
+                    Google Docs
+                </a>
+                <a href="https://colab.research.google.com/" class="sidebar-link sidebar-link-with-icon"
+                    target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-file-code" aria-hidden="true"></i>
+                    </span>
+                    Google Colab
+                </a>
+                <a href="https://www.nytimes.com/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-newspaper" aria-hidden="true"></i>
+                    </span>
+                    New York Times
+                </a>
+                <a href="https://fivethirtyeight.com/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                    </span>
+                    FiveThirtyEight
+                </a>
+                <a href="https://www.igmchicago.org/" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                    </span>
+                    IGM Chicago
+                </a>
+                <a href="#" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="fas fa-map" aria-hidden="true"></i>
+                    </span>
+                    Map
+                </a>
+                <a href="spotify:playlist:37i9dQZF1EptwPAbhZbCZT?si=331be86c252942ee"
+                    class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon">
+                        <i class="fab fa-spotify" aria-hidden="true"></i>
+                    </span>
+                    Spotify
+                </a>
             </div>
+        </div>
+        <!-- Sidebar end -->
+
+        <!-- Content wrapper start -->
+        <div class="content-wrapper">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="row" id='news'></div>
+                <div class="row row-eq-spacing-lg">
+                    <div class="col-lg-9">
+                        <div class="content">
+                            <h1 class="content-title">
+                                Page title
+                            </h1>
+                            <div class="fake-content"></div>
+                            <div class="fake-content"></div>
+                        </div>
+                        <div class="card">
+                            <h2 class="card-title">
+                                Card title
+                            </h2>
+                            <div class="fake-content"></div>
+                            <div class="fake-content"></div>
+                            <div class="fake-content"></div>
+
+                            <button class="btn btn-primary btn-sm" type="button" onclick="toastAlert()">Toast!</button>
+
+                        </div>
+                        <div class="content">
+                            <div class="fake-content"></div>
+                            <div class="fake-content w-150"></div>
+                        </div>
+
+                        <!-- Hoverable rows -->
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Title</th>
+                                    <th class="text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody id='news' />
+                        </table>
+                    </div>
+                    <div class="col-lg-3 d-none d-lg-block">
+                        <div class="content">
+                            <div><img src="https://apod.nasa.gov/apod/image/2206/NGC6744_chakrabarti1024R.jpg"
+                                    alt="Nasa Image of the day" width="100%" border-radius="25px"></div>
+                            <br>
+                            <div><img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/800px-ErnestHemingway.jpg"
+                                    alt="Nasa Image of the day" width="100%" border-radius="25px"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Content wrapper end -->
+
+        <!-- Navbar fixed bottom start -->
+        <nav class="navbar navbar-fixed-bottom">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-question-circle-o mr-5" aria-hidden="true"></i>
+                        Help
+                    </a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                © Copyright 2022, Brand
+            </span>
+        </nav>
+        <!-- Navbar fixed bottom end -->
+
     </div>
-    </div>
+    <!-- Page wrapper end -->
+
+    <!-- Halfmoon JS -->
+    <script src="static/js/halfmoon.js"></script>
+    <script type="text/javascript">
+        // Toasts a default alert
+        function toastAlert() {
+            var alertContent = "This is a default alert with <a href='#' class='alert-link'>a link</a> being toasted.";
+            // Built-in function
+            halfmoon.initStickyAlert({
+                content: alertContent,
+                title: "Toast!"
+            })
+        }
+
+        // Toggles the parent's dark mode (if this page is loaded in an iFrame) 
+        function parentToggleDarkmode() {
+            window.parent.toggleDarkModeFromChild();
+        }
+
+        // Override the dark mode toggle function to call the parent's one
+        // Again, this is for the case where the page is loaded in an iFrame
+        if (window !== window.parent) {
+            halfmoon.toggleDarkMode = parentToggleDarkmode;
+        }
+
+
+        function show(data) {
+            let tab = '';
+            // Loop to access all rows
+            for (let r of data.data) {
+                tab += `<tr>
+                    <th>${r.id}</th>
+                    <td>${r.title}</td>
+                    <td>
+                        <a href="${r.link}"target="_blank">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </td></tr>`;
+            }
+            // Setting innerHTML as tab variable
+            document.getElementById("news").innerHTML = tab;
+        }
+
+        fetch('https://iris-develop.herokuapp.com/')
+            .then(response => response.json())
+            .then(data => show(data));
+    </script>
+
+
 </body>
-
-<script>
-    function show(data) {
-        let tab = '';
-        // Loop to access all rows
-        for (let r of data.data) {
-            tab += `<div class="col-sm-4">
-                <div class="card bg-primary mb-3">
-                    <h5 class="card-header">${r.title}</td></h5>
-                    <div class="card-body">
-                        <p class="card-title text-white">${r.date}</p>
-                        <p>${r.description}</p>
-                        <img src="${r.logo}" alt="logo" style="width:25%;">
-                        <a href =${r.link}>Link</a>
-                        </div>
-                        </div>
-                    </div>`;
-        }
-        // Setting innerHTML as tab variable
-        document.getElementById("news").innerHTML = tab;
-    }
-
-    fetch('https://iris-develop.herokuapp.com/')
-        .then(response => response.json())
-        .then(data => show(data));
-
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-8W8L407W93');
-    // api url
-    const api_url =
-        "https://iris-develop.herokuapp.com/";
-
-    // Defining async function
-    async function getapi(url) {
-
-        // Storing response
-        const response = await fetch(url);
-
-        // Storing data in form of JSON
-        var data = await response.json();
-        if (response) {
-            hideloader();
-        }
-        show(data);
-    }
-    // Calling that async function
-    getapi(api_url);
-
-    // Function to hide the loader
-    function hideloader() {
-        document.getElementById('loading').style.display = 'none';
-    }
-</script>
 
 </html>

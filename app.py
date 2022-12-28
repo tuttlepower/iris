@@ -8,7 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 import iris
 
-# from Paper import Paper
 
 app = Flask(__name__)
 FlaskJSON(app)
