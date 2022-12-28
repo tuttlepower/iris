@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - python -m pytest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the build artifact to S3...
+      # - aws s3 cp artifact.zip s3://<my-bucket>/artifact.zip
