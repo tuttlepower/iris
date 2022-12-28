@@ -1,0 +1,12 @@
+body {
+  background-color: white;
+}
+
+.dark-mode {
+  background-color: #222222;
+  color: white;
+}
+.dark-mode-card{
+    background-color: inherit;
+    color: inherit;
+}
