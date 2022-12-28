@@ -42,6 +42,9 @@ class Paper(db.Model):
         self.date = date
         self.logo = logo
 
+@app.route('/healthcheck')
+def healthcheck():
+    return "Healthcheck Endpoint"
 
 @app.route('/')
 @cross_origin()
