@@ -13,4 +13,5 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the build artifact to S3...
-      # - aws s3 cp artifact.zip s3://<my-bucket>/artifact.zip
+      - aws s3 cp artifact.zip s3://codepipeline-us-east-1-470704165021/iris_pipeline/SourceArti/cOgm9Mz/artifact.zip
+
