@@ -2,16 +2,12 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: 3.7
     commands:
       - pip install -r requirements.txt
   build:
     commands:
-      # - python -m pytest
+      - zip -r artifact.zip .
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the build artifact to S3...
-      - aws s3 cp artifact.zip s3://codepipeline-us-east-1-470704165021/iris_pipeline/SourceArti/cOgm9Mz/artifact.zip
-
+      - aws elasticbeanstalk create-application-version --application-name iris --version-label v1.1 --source-bundle S3Bucket=elasticbeanstalk-us-east-1-457815361580	,S3Key=artifact.zip
+      - aws elasticbeanstalk update-environment --environment-name Iris_env --version-label v1.1
