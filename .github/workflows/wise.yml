@@ -1,0 +1,17 @@
+name: Call API Endpoint
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs at 5am UTC every day
+    - cron:  '0 5 * * *'
+
+jobs:
+  call-endpoint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Call WiseOldMan API Endpoint
+      run: |
+        curl -X GET "https://api.wiseoldman.net/v2/players/bullets196" \
+             -H "Accept: application/json"
