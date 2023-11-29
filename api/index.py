@@ -28,7 +28,10 @@ def data():
 
 @app.route('/reqs')
 def get_time():
-    #the required first parameter of the 'get' method is the 'url':
-    x = requests.get('https://w3schools.com/python/demopage.htm')
+    try:
+        x = requests.get('https://w3schools.com/python/demopage.htm', timeout=5)  # Timeout in seconds
+    # Process response here
+    except requests.exceptions.Timeout:
+        x = ('Request timeout')
     #print the response text (the content of the requested file):
     return jsonify(x)
