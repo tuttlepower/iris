@@ -1,6 +1,6 @@
 from flask import Flask
 import os
-from flask_json import FlaskJSON
+from flask import jsonify
 
 app = Flask(__name__)
 FlaskJSON(app)
@@ -15,7 +15,8 @@ def healthcheck():
 
 @app.route('/get_data')
 def get_data():
-    return json_response(data={"key": "value"})
+    d = [0,0,9,8,7]
+    return jsonify(d)
 
 
 # @app.route('/')
