@@ -1,26 +1,28 @@
 from flask import Flask
-import os
 from flask import jsonify
+import datetime
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    return jsonify('Hello, World!')
 
 @app.route('/healthcheck')
 def healthcheck():
-    return "Healthcheck Endpoint"
+    return jsonify("Healthcheck Endpoint")
 
 @app.route('/get_data')
 def get_data():
-    d = [0,0,9,8,7]
+    d = [0+8,0,9,8,7]
     return jsonify(d)
 
 
-# @app.route('/')
-# def data():
-#     return json_response(data="Data")
+@app.route('/time')
+def data():
+    x = datetime.datetime.now()
+    return jsonify(x)
+
 
 
 # @app.route('/get_time')
