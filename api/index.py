@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import jsonify
 import datetime
+import requests
 
 app = Flask(__name__)
 
@@ -25,6 +26,9 @@ def data():
 
 
 
-# @app.route('/get_time')
-# def get_time():
-#     return json_response(time=datetime.utcnow())
+@app.route('/reqs')
+def get_time():
+    #the required first parameter of the 'get' method is the 'url':
+    x = requests.get('https://w3schools.com/python/demopage.htm')
+    #print the response text (the content of the requested file):
+    return jsonify(x)
