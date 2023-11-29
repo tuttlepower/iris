@@ -3,7 +3,6 @@ import os
 from flask import jsonify
 
 app = Flask(__name__)
-FlaskJSON(app)
 
 @app.route('/')
 def home():
