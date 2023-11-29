@@ -34,4 +34,4 @@ def get_time():
     except requests.exceptions.Timeout:
         x = ('Request timeout')
     #print the response text (the content of the requested file):
-    return jsonify(x)
+    return x
