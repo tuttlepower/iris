@@ -4,9 +4,7 @@ from datetime import datetime
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask_json import FlaskJSON, as_json, json_response
-from flask_sqlalchemy import SQLAlchemy
 
-import api.iris as iris
 
 
 app = Flask(__name__)
@@ -19,7 +17,6 @@ def healthcheck():
 
 @app.route('/')
 def data():
-    iris
     return json_response(data="Data")
 
 
