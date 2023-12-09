@@ -14,4 +14,4 @@ def rss_to_json(url):
             feed_item[child.tag] = child.text
         feed_data.append(feed_item)
     # Convert to JSON
-    return json.dumps(feed_data, indent=4)
+    return feed_data

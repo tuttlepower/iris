@@ -55,6 +55,6 @@ def get_rss_to_json():
     except requests.exceptions.Timeout:
         x = ('Request timeout')
 
-    return x
+    return jsonify(x)
 
 
