@@ -67,4 +67,8 @@ def get_rss_to_json_transform(url):
 
     return jsonify(x)
 
+@app.route('/user/<username>')
+def show_user_profile(username):
+    # show the user profile for that user
+    return 'User %s' % username
 
