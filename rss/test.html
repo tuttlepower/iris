@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology News</title>
+    <link href="../static/css/halfmoon.min.css" rel="stylesheet">
+    <style>
+        .news-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .news-table th, .news-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .news-table th {
+            text-align: left;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body class="halfmoon">
+    <div class="container mt-5">
+        <button class="btn btn-primary" onclick="halfmoon.toggleDarkMode()">Toggle Dark Mode</button>
+        <h1>Trading Technology News</h1>
+        <table class="news-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Link</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="rss-feeds">
+                <!-- News items will be added here -->
+            </tbody>
+        </table>
+    </div>
+    <script src="../static/js/halfmoon.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -27,9 +27,19 @@ def data():
 
 
 @app.route('/reqs')
-def get_time():
+def get_request():
     try:
         x = requests.get('https://w3schools.com/python/demopage.htm', timeout=5)  # Timeout in seconds
+    # Process response here
+    except requests.exceptions.Timeout:
+        x = ('Request timeout')
+    #print the response text (the content of the requested file):
+    return x.text
+
+@app.route('/rss')
+def get_request():
+    try:
+        x = requests.get('https://back.nber.org/rss/new.xml', timeout=5)  # Timeout in seconds
     # Process response here
     except requests.exceptions.Timeout:
         x = ('Request timeout')

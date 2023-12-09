@@ -15,39 +15,49 @@ async function displayRSSFeed(url) {
     const rssFeed = await loadRSSFeed(url);
     if (!rssFeed) return;
 
-    const items = rssFeed.querySelectorAll('item');
+    let items = Array.from(rssFeed.querySelectorAll('item'));
+    // Sort items by date
+    items.sort((a, b) => {
+        let dateA = new Date(a.querySelector('pubDate').textContent);
+        let dateB = new Date(b.querySelector('pubDate').textContent);
+        return dateB - dateA; // Sort in descending order
+    });
+
     let htmlContent = '';
 
-    items.forEach(item => {
+    items.forEach((item, index) => {
         const title = item.querySelector('title').textContent;
         const link = item.querySelector('link').textContent;
+        const pubDate = item.querySelector('pubDate') ? new Date(item.querySelector('pubDate').textContent).toLocaleString() : 'No date';
         const description = item.querySelector('description').textContent;
-        let image = '';
-        if (item.querySelector('enclosure')) {
-            image = item.querySelector('enclosure').getAttribute('url');
-        }
 
         htmlContent += `
-            <div class="col-md-4">
-                <div class="card">
-                    ${image ? `<img src="${image}" class="card-img-top" alt="${title}">` : ''}
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">${description}</p>
-                        <a href="${link}" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>`;
+            <tr>
+                <td>${title}</td>
+                <td>${pubDate}</td>
+                <td><a href="${link}" target="_blank">Read More</a></td>
+                <td>
+                    <button class="btn btn-secondary btn-sm" onclick="toggleDescription('desc-${index}')">Toggle Description</button>
+                    <p id="desc-${index}" style="display: none;">${description}</p>
+                </td>
+            </tr>`;
     });
 
     document.getElementById('rss-feeds').innerHTML += htmlContent;
 }
 
+function toggleDescription(id) {
+    const element = document.getElementById(id);
+    if (element.style.display === "none") {
+        element.style.display = "block";
+    } else {
+        element.style.display = "none";
+    }
+}
+
 // Replace these URLs with the actual RSS feed URLs
-displayRSSFeed('https://feeds.npr.org/1001/rss.xml');
 displayRSSFeed('https://feeds.npr.org/1001/rss.xml');
 displayRSSFeed('https://back.nber.org/rss/new.xml');
 displayRSSFeed('https://apps.bea.gov/rss/rss.xml');
 displayRSSFeed('http://export.arxiv.org/rss/econ');
 displayRSSFeed('https://jmlr.org/jmlr.xml');
-
