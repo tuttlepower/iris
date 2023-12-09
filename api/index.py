@@ -2,7 +2,7 @@ from flask import Flask
 from flask import jsonify
 import datetime
 import requests
-from iris import rss_to_json
+from .iris import rss_to_json
 
 app = Flask(__name__)
 
