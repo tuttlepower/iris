@@ -57,4 +57,14 @@ def get_rss_to_json():
 
     return jsonify(x)
 
+@app.route('/transform/<url>')
+def get_rss_to_json(url):
+    try:
+        rss_url = url
+        x = rss_to_json(rss_url)
+    except requests.exceptions.Timeout:
+        x = ('Request timeout')
+
+    return jsonify(x)
+
 
