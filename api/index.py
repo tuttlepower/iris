@@ -2,6 +2,7 @@ from flask import Flask
 from flask import jsonify
 import datetime
 import requests
+from iris import rss_to_json
 
 app = Flask(__name__)
 
@@ -45,3 +46,15 @@ def get_rss():
         x = ('Request timeout')
     #print the response text (the content of the requested file):
     return x.text
+
+@app.route('/rss-to-json')
+def get_rss_to_json():
+    try:
+        rss_url = 'https://back.nber.org/rss/new.xml'
+        x = rss_to_json(rss_url)
+    except requests.exceptions.Timeout:
+        x = ('Request timeout')
+
+    return x.text
+
+
