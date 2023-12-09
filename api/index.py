@@ -58,7 +58,7 @@ def get_rss_to_json():
     return jsonify(x)
 
 @app.route('/transform/<url>')
-def get_rss_to_json(url):
+def get_rss_to_json_transform(url):
     try:
         rss_url = url
         x = rss_to_json(rss_url)
