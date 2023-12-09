@@ -37,7 +37,7 @@ def get_request():
     return x.text
 
 @app.route('/rss')
-def get_request():
+def get_rss():
     try:
         x = requests.get('https://back.nber.org/rss/new.xml', timeout=5)  # Timeout in seconds
     # Process response here
