@@ -15,3 +15,15 @@ def rss_to_json(url):
         feed_data.append(feed_item)
     # Convert to JSON
     return feed_data
+
+def get_image_from_feed():
+    feed_url = 'https://www.nasa.gov/feeds/iotd-feed/'
+    response = requests.get(feed_url)
+    content = response.content
+    root = ET.fromstring(content)
+    first_item = root.find('channel/item')
+    if first_item is not None:
+        link = first_item.find('link').text
+        return link
+    else:
+        return 'https://apod.nasa.gov/apod/image/2206/NGC6744_chakrabarti1024R.jpg'

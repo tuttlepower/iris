@@ -2,7 +2,7 @@ from flask import Flask
 from flask import jsonify
 import datetime
 import requests
-from .iris import rss_to_json
+from .iris import rss_to_json, get_image_from_feed
 
 app = Flask(__name__)
 
@@ -72,3 +72,6 @@ def show_user_profile(username):
     # show the user profile for that user
     return 'User %s' % username
 
+@app.route('/nasa_image')
+def nasa_image_of_the_day():
+    return get_image_from_feed()
