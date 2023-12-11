@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 from flask import jsonify
 import datetime
 import requests
@@ -74,4 +74,4 @@ def show_user_profile(username):
 
 @app.route('/nasa_image')
 def nasa_image_of_the_day():
-    return get_image_from_feed()
+    return redirect(get_image_from_feed())
