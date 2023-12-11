@@ -2,7 +2,7 @@ from flask import Flask, redirect
 from flask import jsonify
 import datetime
 import requests
-from .iris import rss_to_json, get_image_from_feed
+from .iris import get_content
 
 app = Flask(__name__)
 
@@ -10,32 +10,10 @@ app = Flask(__name__)
 def home():
     return jsonify('Hello, World!')
 
-@app.route('/healthcheck')
-def healthcheck():
-    return jsonify("Healthcheck Endpoint")
-
-@app.route('/get_data')
-def get_data():
-    d = [0+8,0,9,8,7]
-    return jsonify(d)
-
-
 @app.route('/time')
 def data():
     x = datetime.datetime.now()
     return jsonify(x)
-
-
-
-@app.route('/reqs')
-def get_request():
-    try:
-        x = requests.get('https://w3schools.com/python/demopage.htm', timeout=5)  # Timeout in seconds
-    # Process response here
-    except requests.exceptions.Timeout:
-        x = ('Request timeout')
-    #print the response text (the content of the requested file):
-    return x.text
 
 @app.route('/rss')
 def get_rss():
@@ -51,7 +29,7 @@ def get_rss():
 def get_rss_to_json():
     try:
         rss_url = 'https://back.nber.org/rss/new.xml'
-        x = rss_to_json(rss_url)
+        x = get_content(rss_url)
     except requests.exceptions.Timeout:
         x = ('Request timeout')
 
@@ -61,10 +39,9 @@ def get_rss_to_json():
 def get_rss_to_json_transform(url):
     try:
         rss_url = url
-        x = rss_to_json(rss_url)
+        x = get_content(rss_url)
     except requests.exceptions.Timeout:
         x = ('Request timeout')
-
     return jsonify(x)
 
 @app.route('/user/<username>')
@@ -72,6 +49,41 @@ def show_user_profile(username):
     # show the user profile for that user
     return 'User %s' % username
 
-@app.route('/nasa_image')
-def nasa_image_of_the_day():
-    return redirect(get_image_from_feed())
+@app.route('/full')
+def full_rss():
+    sources = [
+'https://back.nber.org/rss/new.xml'
+,'https://www.journals.uchicago.edu/action/showFeed?type=etoc&feed=rss&jc=jole'
+,'https://www.journals.uchicago.edu/action/showFeed?type=etoc&feed=rss&jc=jpe'
+,'http://export.arxiv.org/rss/cs'
+,'http://export.arxiv.org/rss/q-fin'
+,'https://back.nber.org/rss/releases.xml'
+,'https://netflixtechblog.com/feed'
+,'https://eng.lyft.com/feed'
+,'https://engineering.atspotify.com/rss'
+,'https://engineering.fb.com/rss'
+,'https://medium.com/feed/airbnb-engineering'
+,'https://github.blog/feed'
+,'https://stackoverflow.blog/feed'
+,'https://slack.engineering/feed'
+,'https://medium.com/feed/draftkings-engineering'
+,'https://medium.com/feed/fanduel-life/tagged/engineering'
+,'https://hnrss.org/frontpage'
+,'https://feeds.npr.org/1019/rss.xml'
+,'https://ir.thomsonreuters.com/rss/news-releases.xml?items=15'
+,'https://feeds.bloomberg.com/markets/news.rss'
+,'https://feeds.bloomberg.com/politics/news.rss'
+,'https://feeds.bloomberg.com/technology/news.rss'
+,'https://feeds.bloomberg.com/wealth/news.rss'
+,'https://fredblog.stlouisfed.org/feed'
+,'https://www.jmlr.org/jmlr.xml'
+,'https://www.jpl.nasa.gov/feeds/news/'
+,'https://www.nasa.gov/feeds/iotd-feed/'
+,'https://www.nasa.gov/technology/feed/'
+,'http://www.federalreserve.gov/feeds/Data/CP_RATES.xml'
+,'https://www.natesilver.net/feed'
+]
+    full = []
+    for x in sources:
+        full.append(get_content(x))
+    return jsonify(full)
