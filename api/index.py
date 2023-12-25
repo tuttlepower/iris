@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect,render_template
 from flask import jsonify
 import datetime
 import requests
@@ -34,6 +34,10 @@ def get_rss_to_json():
         x = ('Request timeout')
 
     return jsonify(x)
+
+@app.route('/render')
+def render():
+    render_template("about.html")
 
 @app.route('/transform/<url>')
 def get_rss_to_json_transform(url):

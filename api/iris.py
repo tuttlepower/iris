@@ -2,10 +2,6 @@ import requests
 import xml.etree.ElementTree as ET
 import json
 
-import requests
-import xml.etree.ElementTree as ET
-import json
-
 def get_content(url):
       # Fetch feed
       response = requests.get(url, timeout=5)
@@ -51,3 +47,4 @@ def get_image_from_feed():
         return link
     else:
         return 'https://apod.nasa.gov/apod/image/2206/NGC6744_chakrabarti1024R.jpg'
+    

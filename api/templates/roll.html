@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    <title>Roll</title>
+</head>
+
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <div class="container row">
+        <div class="justify-content-center">
+            <i class="fas fa-dice-{{ die1 }} fa-10x"></i>
+            <i class="fas fa-dice-{{ die2 }} fa-10x"></i>
+        </div>
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>
