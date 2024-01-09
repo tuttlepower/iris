@@ -8,8 +8,8 @@ import os
 app = Flask(__name__)
 
 # Supabase setup
-url: str = "https://bnmeoegpseguowtfulja.supabase.co"
-key: str = os.environ.get('SUPABASE_KEY')
+url = "https://bnmeoegpseguowtfulja.supabase.co"
+key = os.environ.get('SUPABASE_KEY')
 supabase: Client = create_client(url, key)
 
 @app.route('/api/getData', methods=['GET'])
