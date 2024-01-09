@@ -2,9 +2,20 @@ from flask import Flask, redirect,render_template,session, url_for, request,json
 from flask import jsonify
 import datetime
 import requests
-from .iris import get_content
+from supabase import create_client, Client
+import os
 
 app = Flask(__name__)
+
+# Supabase setup
+url: str = "https://bnmeoegpseguowtfulja.supabase.co"
+key: str = os.environ.get('SUPABASE_KEY')
+supabase: Client = create_client(url, key)
+
+@app.route('/api/getData', methods=['GET'])
+def get_data():
+    data = supabase.table("feed").select("*").execute()
+    return jsonify(data.data)
 
 @app.route('/')
 def home():
