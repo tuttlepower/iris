@@ -14,7 +14,7 @@ supabase: Client = create_client(url, key)
 
 @app.route('/api/getData', methods=['GET'])
 def get_data():
-    data = supabase.table("feed").select("*").execute()
+    data = supabase.table("feeds").select("*").execute()
     return jsonify(data.data)
 
 @app.route('/')
