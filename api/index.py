@@ -4,7 +4,7 @@ import datetime
 import requests
 from supabase import create_client, Client
 import os
-import .iris
+import iris
 
 app = Flask(__name__)
 
