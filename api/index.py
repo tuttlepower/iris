@@ -4,6 +4,7 @@ import datetime
 import requests
 from supabase import create_client, Client
 import os
+import iris
 
 app = Flask(__name__)
 
@@ -35,29 +36,6 @@ def get_rss():
         x = ('Request timeout')
     #print the response text (the content of the requested file):
     return x.text
-
-@app.route('/rss-to-json')
-def get_rss_to_json():
-    try:
-        rss_url = 'https://back.nber.org/rss/new.xml'
-        x = get_content(rss_url)
-    except requests.exceptions.Timeout:
-        x = ('Request timeout')
-
-    return jsonify(x)
-
-@app.route('/render')
-def render():
-    render_template("about.html")
-
-@app.route('/transform/<url>')
-def get_rss_to_json_transform(url):
-    try:
-        rss_url = url
-        x = get_content(rss_url)
-    except requests.exceptions.Timeout:
-        x = ('Request timeout')
-    return jsonify(x)
 
 @app.route('/user/<username>')
 def show_user_profile(username):
@@ -100,5 +78,5 @@ def full_rss():
 ]
     full = []
     for x in sources:
-        full.append(get_content(x))
+        full.append(iris.get_content(x))
     return jsonify(full)
