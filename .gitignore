@@ -4,3 +4,4 @@ __pycache__/
 __pycache__/iris.cpython-310.pyc
 /iris/__pycache__
 *.pyc
+*.env
