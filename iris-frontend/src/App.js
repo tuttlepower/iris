@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React, { useState, useEffect } from 'react';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
   const [data, setData] = useState(null);
@@ -11,7 +12,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://iris-ashen.vercel.app");
+      const response = await fetch("https://iris-ashen.vercel.app/");
       const data = await response.json();
       setData(data);
     } catch (error) {
@@ -25,6 +26,7 @@ function App() {
           <div>
             {data}
             {/* Example: <p>{data.someField}</p> */}
+            <SpeedInsights />
           </div>
         ) : (
           <p>Loading...</p>
