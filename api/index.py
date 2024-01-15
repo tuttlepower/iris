@@ -5,9 +5,10 @@ import requests
 from supabase import create_client, Client
 import os
 from . import iris
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app, resources={r"/*": {"origins": "https://tuttlepower.github.io"}})
 # Supabase setup
 url = "https://bnmeoegpseguowtfulja.supabase.co"
 key = os.environ.get('SUPABASE_KEY')

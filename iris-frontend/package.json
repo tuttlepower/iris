@@ -2,6 +2,7 @@
   "name": "iris-frontend",
   "version": "0.1.0",
   "homepage": "http://tuttlepower.github.io/iris",
+  "proxy": "https://iris-ashen.vercel.app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
