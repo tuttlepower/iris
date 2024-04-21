@@ -12,7 +12,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://iris-ashen.vercel.app/");
+      const response = await fetch("https://iris-ashen.vercel.app/full");
       const data = await response.json();
       setData(data);
     } catch (error) {
