@@ -1,15 +1,26 @@
-# iris
-News Compilation and homepage
+# Iris URL Redirector
 
+A minimal FastAPI service that rewrites any HTTP/HTTPS URL to common archive, reader, and raw views. The root route provides a tiny Bootstrap page for quick redirects.
 
-https://www.gethalfmoon.com/docs/content-and-cards/
-https://developer.nytimes.com/docs/rss-api/1/overview
-https://developer.nytimes.com/apis
+## Routes
+- `GET /` – Bootstrap landing page with URL input and buttons.
+- `GET /a/{url}` – 302 redirect to `archive.ph`.
+- `GET /w/{url}` – 302 redirect to the Wayback Machine.
+- `GET /12/{url}` – 302 redirect to `12ft.io`.
+- `GET /r/{url}` – 302 redirect to a lightweight reader view.
+- `GET /raw/{url}` – Fetches the raw HTML (up to 1 MB) with timeouts and returns it directly.
 
-https://blog.logrocket.com/deploying-react-apps-github-pages/
+Private, loopback, and link-local addresses are blocked. Invalid requests return clean HTML error pages for 400, 403, 404, and 504 scenarios.
 
-https://supabase.com/dashboard/project/
+## Local Development
+Install dependencies and run the FastAPI app with Uvicorn:
 
-https://www.geeksforgeeks.org/deployment-of-react-application-using-github-pages/#
+```bash
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
 
-supabase.ipynb colab
+Open http://localhost:8000 to use the landing page.
+
+## Deployment
+The included `vercel.json` builds the FastAPI app via `@vercel/python` and routes all traffic to `main.py` for serverless hosting on Vercel.
