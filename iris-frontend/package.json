@@ -4,6 +4,9 @@
   "homepage": "http://tuttlepower.github.io/iris",
   "proxy": "https://iris-ashen.vercel.app",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
